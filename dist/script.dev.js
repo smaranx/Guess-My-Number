@@ -9,8 +9,8 @@ console.log(document.querySelector('.guess').value);
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-var secretNumber = Math.trunc(Math.random() * 20) + 1;
-document.querySelector('.number').textContent = secretNumber;
+var secretNumber = Math.trunc(Math.random() * 20) + 1; //document.querySelector('.number').textContent = secretNumber;
+
 var score = 20;
 document.querySelector('.check').addEventListener('click', function () {
   var guess = Number(document.querySelector('.guess').value);
@@ -21,7 +21,8 @@ document.querySelector('.check').addEventListener('click', function () {
   } else if (guess === secretNumber) {
     document.querySelector('.message').textContent = '🎉 Correct Number !!';
     document.querySelector('body').style.backgroundColor = '#60b347';
-    document.querySelector('.number').style.width = '36rem'; // when guess is high
+    document.querySelector('.number').style.width = '36rem';
+    document.querySelector('.number').textContent = secretNumber; // when guess is high
   } else if (guess > secretNumber) {
     if (score > 1) {
       document.querySelector('.message').textContent = '📈 Too High !!';
@@ -42,4 +43,14 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('.score').textContent = 0;
     }
   }
+});
+document.querySelector('.again').addEventListener('click', function () {
+  document.querySelector('body').style.backgroundColor = '#222';
+  document.querySelector('.number').style.width = '15rem';
+  document.querySelector('.number').textContent = '?';
+  document.querySelector('.message').textContent = 'start guessing...';
+  score = 20;
+  document.querySelector('.score').textContent = score;
+  secretNumber = Math.trunc(Math.random() * 20) + 1;
+  document.querySelector('.guess').value = '';
 });
